@@ -1,0 +1,11 @@
+version: '2'
+services:
+    app:
+        image: openjdk:8-jdk-alpine 
+        ports:
+            - "8080:8080" # ホスト8080ポートをコンテナ8080ポートに転送
+        volumes:
+            - .:/app # 作業するホストPC（カレントディレクトリ）とDockerのコンテナ(/appディレクトリ)を共有することが出来る
+                     # volumesはホストのパスを指定するか否かによって挙動が異なってくるので注意
+        working_dir: /app # コンテナのworkingディレクトリ
+        command: ./mvnw spring-boot:run # Spring Bootのプロジェクトを起動
